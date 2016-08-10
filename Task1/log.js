@@ -8,9 +8,9 @@ function log(data) {
 
 function stringRepresentation(item) {
     if (item === undefined)
-        return "not defined";
+        return "не определено";
     if (item === null)
-        return "not initialized";
+        return "не указано";
 
     return item;
 }
