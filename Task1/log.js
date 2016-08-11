@@ -1,4 +1,4 @@
-console.log("log.js");
+ï»¿console.log("log.js");
 
 function log(data) {
     for (var i = 0; i < data.length; i++) {
@@ -8,9 +8,9 @@ function log(data) {
 
 function stringRepresentation(item) {
     if (item === undefined)
-        return "íå îïðåäåëåíî";
+        return "Ð½Ðµ Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð¾";
     if (item === null)
-        return "íå óêàçàíî";
+        return "Ð½Ðµ ÑƒÐºÐ°Ð·Ð°Ð½Ð¾";
 
     return item;
 }

@@ -1,4 +1,4 @@
-console.log("calc.js");
+﻿console.log("calc.js");
 
 for (var i = 0; i < data.length; i++) {
     if (isNumeric(data[i])) {
