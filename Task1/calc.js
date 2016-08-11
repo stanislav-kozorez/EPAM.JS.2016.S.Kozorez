@@ -16,6 +16,8 @@ for (var i = 0; i < data.length; i++) {
 
 log(data);
 
+// Checks if argument is number.
+// true, false, null, undefined, "" are treated as NaN
 function isNumeric(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
 }
