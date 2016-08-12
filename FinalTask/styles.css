@@ -1,0 +1,129 @@
+﻿html{
+    min-height: 100vh;
+}
+
+body
+{
+    margin: 0;
+    padding: 10px;
+    background-color: #F7F7F7;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+.game-container{
+    min-height: 100vh;
+    border: 3px solid #E9E9E9;
+    box-shadow: 10px 10px 10px 10px rgba(128, 128, 128, 0.5);
+}
+
+.menu{
+    overflow: hidden;
+    margin: 20px 20px 0;
+}
+
+.start-button, .stop-button{
+    float: right;
+    width: 100px;
+    text-align: center;
+    padding: 5px;
+    font-size: 20px;
+}
+
+.start-button{
+    background-color: #4CAF50;
+    color: white;
+}
+
+.stop-button{
+    background-color: #FFD180;
+    color: #62AB5A;
+}
+
+.start-button:hover, .stop-button:hover{
+    background-color: #24e82c;
+    font-weight:bold;
+    transition-duration: 0.2s;
+    color: white;
+}
+
+.start-button:active, .stop-button:active{
+    background-color: #1b4b0d;
+    color: #f0f3d0;
+    font-size: 18px;
+    transition-duration: 0s;
+}
+
+.playing-area{
+    width: 800px;
+    height: 600px;
+    margin: 0 auto;
+    padding: 10px;
+    border: 1px solid black;
+    display: table;
+}
+
+.top-left-resource, .top-right-resource, .bottom-left-resource, .bottom-right-resource{
+    width: 64px;
+    height: 64px;
+    margin: 15px auto 0;
+}
+
+.top-left-resource{
+    background: url("Images/cheese.png") no-repeat top left;
+}
+
+.top-right-resource{
+    background: url("Images/cherry.png") no-repeat top left;
+}
+
+.bottom-left-resource{
+    background: url("Images/orange.png") no-repeat top left;
+}
+
+.bottom-right-resource{
+    background: url("Images/pumpkin.png") no-repeat top left;
+}
+
+.main-playing-area{
+
+}
+
+.col{
+    display: table-cell;
+    border: 1px solid black;
+    width: 15%;
+    position: relative;
+}
+
+.mid-col{
+    width: 70%;
+}
+
+.resource-wrap{
+    width: 100%;
+    height: 20%;
+    border: 1px solid black;
+    position: absolute;
+}
+
+.top{
+    top: 0;
+}
+
+.bottom{
+    bottom: 0;
+}
+
+.resource-wrap-mid{
+    width: 100%;
+    height: 49%;
+    border: 1px solid black;
+}
+
+.counter{
+    text-align:center;
+    font-size: 20px;
+}
