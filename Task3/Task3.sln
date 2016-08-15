@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{F7DC9696-23E6-427B-BB71-F31933C338AC}"
+	ProjectSection(SolutionItems) = preProject
+		Scripts\main.js = Scripts\main.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Styles", "Styles", "{EB30F6A8-FE06-48FD-A928-7B7BD54032E0}"
+	ProjectSection(SolutionItems) = preProject
+		Styles\styles.css = Styles\styles.css
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1AAC6EF3-8986-4294-921A-C2740CB074A1}"
+	ProjectSection(SolutionItems) = preProject
+		home.html = home.html
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
