@@ -45,8 +45,7 @@ taskInfo.generateButton.click(function () {
 
 // Sets block color
 taskInfo.setColorButton.click(function (index) {
-    var blocks = $(".block");
-    blocks.each(function () {
+    var blocks = $(".block").each(function () {
         var number = +$(this).text();
         if (number > 75) {
             $(this).addClass("red");
