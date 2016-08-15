@@ -47,6 +47,7 @@ body
     font-weight:bold;
     transition-duration: 0.2s;
     color: white;
+    cursor: pointer;
 }
 
 .start-button:active, .stop-button:active{
