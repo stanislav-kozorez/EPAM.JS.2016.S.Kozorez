@@ -1,8 +1,4 @@
-﻿html{
-    min-height: 100vh;
-}
-
-body
+﻿body
 {
     margin: 0;
     padding: 10px;
@@ -14,9 +10,11 @@ body
 }
 
 .game-container{
-    min-height: 100vh;
+    width: 1200px;
+    margin: 20px auto;
+    padding-bottom: 20px;
     border: 3px solid #E9E9E9;
-    box-shadow: 10px 10px 10px 10px rgba(128, 128, 128, 0.5);
+    box-shadow: 0 0 10px rgba(128, 128, 128, 0.5);
 }
 
 .menu{
@@ -62,8 +60,7 @@ body
     height: 600px;
     margin: 0 auto;
     padding: 10px;
-    border: 1px solid black;
-    display: table;
+    border: 3px solid #D8D5D5;
 }
 
 .top-left-resource, .top-right-resource, .bottom-left-resource, .bottom-right-resource{
@@ -94,19 +91,23 @@ body
 
 .col{
     display: table-cell;
-    border: 1px solid black;
     width: 15%;
     position: relative;
+    float: left;
+    height: 575px;
 }
 
 .mid-col{
-    width: 70%;
+    width: 68%;
+    border: 3px solid #D8D5D5;
+    margin: 0 10px;
+    margin: 0 1%;
 }
 
 .resource-wrap{
     width: 100%;
     height: 20%;
-    border: 1px solid black;
+    border: 3px solid #D8D5D5;
     position: absolute;
 }
 
