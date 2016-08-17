@@ -51,7 +51,6 @@
 .start-button:active, .stop-button:active{
     background-color: #1b4b0d;
     color: #f0f3d0;
-    font-size: 18px;
     transition-duration: 0s;
 }
 
@@ -90,12 +89,17 @@
     height: 100%;
 }
 
-.game-item{
+.game-item, .game-item-bomb{
     position: absolute;
     background-color: transparent;
     background-size:contain;
     width: 40px;
     height: 40px;
+}
+
+.game-item:hover{
+    border: 3px solid #D8D5D5;
+    cursor: pointer;
 }
 
 .col{
