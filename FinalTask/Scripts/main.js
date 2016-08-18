@@ -1,19 +1,19 @@
 gameInit();
 
 function gameInit() {
-    var playButton = document.getElementById("play-button");
+    var playButton = $("#play-button");
     var stopGame = true;
     var RES_APPEAR_INTERVAL = 500;
-    var RES_DELETE_INTERVAL = 700;
+    var RES_DELETE_INTERVAL = 7000;
     var BOMB_APPEAR_INTERVAL = 5000;
     var BOMB_DELETE_INTERVAL = 2000;
     var resources = ["cheese.png", "orange.png", "cherry.png", "pumpkin.png"];
 
-    var animationCoordinates = {};
+    var animationCoordinates = {}; // for animation when user clicks on resource
     animationCoordinates["cheese.png"] = { left: "-17%", top: "4%" };
-    animationCoordinates["orange.png"] =    { left: "-17%", top: "86%" };
-    animationCoordinates["cherry.png"] =    { left: "109%", top: "4%" };
-    animationCoordinates["pumpkin.png"] =    { left: "109%", top: "86%" };
+    animationCoordinates["orange.png"] = { left: "-17%", top: "86%" };
+    animationCoordinates["cherry.png"] = { left: "109%", top: "4%" };
+    animationCoordinates["pumpkin.png"] = { left: "109%", top: "86%" };
 
     var counterCollection = {};
     counterCollection["cheese.png"] = 0;
@@ -21,20 +21,20 @@ function gameInit() {
     counterCollection["cherry.png"] = 0;
     counterCollection["pumpkin.png"] = 0;
 
-    playButton.onclick = playGame;
+    playButton.click(playGame);
 
     function playGame() {
         stopGame = !stopGame;
         if (!stopGame) {
-            playButton.innerHTML = "Stop";
-            playButton.className = "stop-button";
+            playButton.text("Stop");
+            playButton.attr("class", "stop-button");
             restoreDefaults();
             setTimeout(appearResource, RES_APPEAR_INTERVAL, "resource", RES_APPEAR_INTERVAL, RES_DELETE_INTERVAL);
             setTimeout(appearResource, BOMB_APPEAR_INTERVAL, "bomb", BOMB_APPEAR_INTERVAL, BOMB_DELETE_INTERVAL);
         }
         else {
-            playButton.innerHTML = "Start";
-            playButton.className = "start-button";
+            playButton.text("Start");
+            playButton.attr("class", "start-button");
         }
     };
 
@@ -56,8 +56,8 @@ function gameInit() {
             var randResourceIndex = getRandomIntInclusive(0, 3);
             gameItem = createResource(resources[randResourceIndex], "game-item");
         }
-        playingArea.appendChild(gameItem.html);
-        setTimeout(deleteResource, deleteInterval, gameItem.html);
+        playingArea.appendChild(gameItem);
+        setTimeout(deleteResource, deleteInterval, gameItem);
         if (!stopGame) {
             setTimeout(appearResource, appearInterval, elementType, appearInterval, deleteInterval);
         }
@@ -65,16 +65,13 @@ function gameInit() {
 
     // initializes new resource with given resource name, type and random position 
     function createResource(resourceName, className) {
-        var gameItem = {
-            html: document.createElement("div"),
-            name: resourceName
-        };
+        var gameItem = document.createElement("div");
         var left = getRandomIntInclusive(0, 92);
         var top = getRandomIntInclusive(0, 92);
-        gameItem.html.className = className;
-        gameItem.html.setAttribute("data-resource-type", resourceName);
-        gameItem.html.style = "left:" + left + "%; top:" + top + "%; background-image: url(Images/" + resourceName + ");";
-        gameItem.html.onclick = resourceClick;
+        gameItem.className = className;
+        gameItem.setAttribute("data-resource-type", resourceName);
+        gameItem.style = "left:" + left + "%; top:" + top + "%; background-image: url(Images/" + resourceName + ");";
+        gameItem.onclick = resourceClick;
         return gameItem;
     }
 
@@ -96,7 +93,12 @@ function gameInit() {
     function deleteResource(resource) {
         if (!stopGame && !resource.hasAttribute("data-no-delete")) {
             if (resource.className == "game-item-bomb") {
-                var resourceType = getResourceType(getRandomIntInclusive(0, 3));
+                var resourceType = resources[getRandomIntInclusive(0, 3)];
+
+                // Animate element that has been affected by the bomb
+                var elem = $(document.getElementById("counter-" + resourceType)).parent();
+                elem.addClass("blink");              
+                setTimeout(function () { elem.removeClass("blink"); }, 500);
 
                 counterCollection[resourceType] = counterCollection[resourceType] - 10 < 0 ? 0 : counterCollection[resourceType] - 10;
                 updateCounterView("counter-" + resourceType, counterCollection[resourceType]);
@@ -116,16 +118,5 @@ function gameInit() {
         min = Math.ceil(min);
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
-
-    // converts numeric index to string resource name
-    function getResourceType(index) {
-        var counter = 0;
-        for (var prop in counterCollection) {
-            if (index == counter) {
-                return prop;
-            }
-            counter++;
-        }
     }
 }
