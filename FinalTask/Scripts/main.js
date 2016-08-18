@@ -4,7 +4,7 @@ function gameInit() {
     var playButton = $("#play-button");
     var stopGame = true;
     var RES_APPEAR_INTERVAL = 500;
-    var RES_DELETE_INTERVAL = 7000;
+    var RES_DELETE_INTERVAL = 700;
     var BOMB_APPEAR_INTERVAL = 5000;
     var BOMB_DELETE_INTERVAL = 2000;
     var resources = ["cheese.png", "orange.png", "cherry.png", "pumpkin.png"];
