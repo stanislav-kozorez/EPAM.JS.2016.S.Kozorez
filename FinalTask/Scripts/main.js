@@ -1,23 +1,36 @@
-var game = new Game();
+gameInit();
 
-function Game() {
+function gameInit() {
     var playButton = document.getElementById("play-button");
     var stopGame = true;
-    var resourceAppearInterval = 500;
-    var resourceDeleteInterval = 3000;
-    var bombAppearInterval = 5000;
-    var bombDeleteInterval = 2000;
-    var counters = [0, 0, 0, 0];
+    var RES_APPEAR_INTERVAL = 500;
+    var RES_DELETE_INTERVAL = 700;
+    var BOMB_APPEAR_INTERVAL = 5000;
+    var BOMB_DELETE_INTERVAL = 2000;
     var resources = ["cheese.png", "orange.png", "cherry.png", "pumpkin.png"];
 
-    var startGameFunc = function() {
+    var animationCoordinates = {};
+    animationCoordinates["cheese.png"] = { left: "-17%", top: "4%" };
+    animationCoordinates["orange.png"] =    { left: "-17%", top: "86%" };
+    animationCoordinates["cherry.png"] =    { left: "109%", top: "4%" };
+    animationCoordinates["pumpkin.png"] =    { left: "109%", top: "86%" };
+
+    var counterCollection = {};
+    counterCollection["cheese.png"] = 0;
+    counterCollection["orange.png"] = 0;
+    counterCollection["cherry.png"] = 0;
+    counterCollection["pumpkin.png"] = 0;
+
+    playButton.onclick = playGame;
+
+    function playGame() {
         stopGame = !stopGame;
         if (!stopGame) {
             playButton.innerHTML = "Stop";
             playButton.className = "stop-button";
             restoreDefaults();
-            setTimeout(appearResource, resourceAppearInterval, "resource", resourceAppearInterval, resourceDeleteInterval);
-            setTimeout(appearResource, bombAppearInterval, "bomb", bombAppearInterval, bombDeleteInterval);
+            setTimeout(appearResource, RES_APPEAR_INTERVAL, "resource", RES_APPEAR_INTERVAL, RES_DELETE_INTERVAL);
+            setTimeout(appearResource, BOMB_APPEAR_INTERVAL, "bomb", BOMB_APPEAR_INTERVAL, BOMB_DELETE_INTERVAL);
         }
         else {
             playButton.innerHTML = "Start";
@@ -25,13 +38,11 @@ function Game() {
         }
     };
 
-    playButton.onclick = startGameFunc;
-
     function restoreDefaults() {
         $("#playing-area").empty();
         $(".counter").text("-");
-        for (var i = 0; i < counters.length; i++) {
-            counters[i] = 0;
+        for (var prop in counterCollection) {
+            counterCollection[prop] = 0;
         }
     }
 
@@ -52,6 +63,7 @@ function Game() {
         }
     }
 
+    // initializes new resource with given resource name, type and random position 
     function createResource(resourceName, className) {
         var gameItem = {
             html: document.createElement("div"),
@@ -69,12 +81,12 @@ function Game() {
     function resourceClick(event) {
         var gameItem = $(event.target);
         if (!gameItem.hasClass("game-item-bomb")) {
-            counters[0] += 1;
-            updateCounterView("counter-" + gameItem.attr("data-resource-type"), counters[0]); /////////////////////////// need to fix
+            var resourceType = gameItem.attr("data-resource-type");
+            updateCounterView("counter-" + resourceType, ++counterCollection[resourceType]);
             gameItem.attr("data-no-delete", "");
             gameItem.animate({
-                left: "0px",
-                top: "0px",
+                left: animationCoordinates[resourceType].left,
+                top: animationCoordinates[resourceType].top,
             }, 1000, function () {
                 event.target.remove();
             });
@@ -84,9 +96,10 @@ function Game() {
     function deleteResource(resource) {
         if (!stopGame && !resource.hasAttribute("data-no-delete")) {
             if (resource.className == "game-item-bomb") {
-                var randomCounterIndex = getRandomIntInclusive(0, 3);
-                counters[randomCounterIndex] -= counters[randomCounterIndex] - 10 < 0 ? 0 : counters[randomCounterIndex] - 10;
-                //updateCounterView("counter-" + randomCounterIndex, counters[randomCounterIndex]);///// fix
+                var resourceType = getResourceType(getRandomIntInclusive(0, 3));
+
+                counterCollection[resourceType] = counterCollection[resourceType] - 10 < 0 ? 0 : counterCollection[resourceType] - 10;
+                updateCounterView("counter-" + resourceType, counterCollection[resourceType]);
             }
             resource.remove();
         }
@@ -105,4 +118,14 @@ function Game() {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
+    // converts numeric index to string resource name
+    function getResourceType(index) {
+        var counter = 0;
+        for (var prop in counterCollection) {
+            if (index == counter) {
+                return prop;
+            }
+            counter++;
+        }
+    }
 }
