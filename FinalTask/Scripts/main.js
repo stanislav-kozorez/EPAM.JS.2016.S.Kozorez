@@ -1,6 +1,4 @@
-gameInit();
-
-function gameInit() {
+$(function () {
     var playButton = $("#play-button");
     var stopGame = true;
     var RES_APPEAR_INTERVAL = 500;
@@ -97,7 +95,7 @@ function gameInit() {
 
                 // Animate element that has been affected by the bomb
                 var elem = $(document.getElementById("counter-" + resourceType)).parent();
-                elem.addClass("blink");              
+                elem.addClass("blink");
                 setTimeout(function () { elem.removeClass("blink"); }, 500);
 
                 counterCollection[resourceType] = counterCollection[resourceType] - 10 < 0 ? 0 : counterCollection[resourceType] - 10;
@@ -119,4 +117,4 @@ function gameInit() {
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
-}
+});
