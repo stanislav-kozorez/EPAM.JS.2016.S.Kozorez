@@ -49,6 +49,7 @@ body{
     margin-bottom: 5px;
     cursor: pointer;
     text-align: center;
+    background-color: #ffd800;
 }
 
 .button#btn-generate{
@@ -59,6 +60,21 @@ body{
     position: absolute;
     top: 0;
     right: 0;
+}
+
+.zombie .health-bar{
+    width: 100px;
+    height: 10px;
+    border: 3px solid #ee8651;
+    border-radius: 5px;
+    background-color: rgba(253, 211, 204, 0.84);
+    margin: -15px 0 0 -30px;
+}
+
+.zombie .health-bar .health-bar-value{
+    height: 100%;
+    background-color: #d80000;
+    width: 20%;
 }
 
 .zombie.michael{
@@ -72,5 +88,19 @@ body{
     width: 60px;
     height: 73px;
     background-image: url(../Images/strong.gif);
+    background-size: cover;
+}
+
+.zombie.strong-die{
+    height: 73px;
+    width: 75px;
+    background-image: url(../Images/strong-die.gif);
+    background-size: cover;
+}
+
+.zombie.michael-die{
+    height: 73px;
+    width: 70px;
+    background-image: url(../Images/michael-die.gif);
     background-size: cover;
 }
