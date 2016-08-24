@@ -74,7 +74,7 @@ body{
 .zombie .health-bar .health-bar-value{
     height: 100%;
     background-color: #d80000;
-    width: 20%;
+    width: 100%;
 }
 
 .zombie.michael{
