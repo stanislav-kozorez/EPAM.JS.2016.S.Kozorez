@@ -14,6 +14,7 @@ $(function () {
 
     $("#btn-generate").click(game.engine.createRandomZombie);
     $("#btn-kill").click(game.engine.killRandomZombie);
+    $("#btn-slow-down").click(game.engine.slowDownZombies);
 
     game.engine.mainLoop();
 });

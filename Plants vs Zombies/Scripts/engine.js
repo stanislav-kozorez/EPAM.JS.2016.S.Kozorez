@@ -1,5 +1,6 @@
 game.engine = {
     gameOver: false,
+    moveSlower: false,
     zombies: [],
     fieldLines: null,
     zombieFactory: new game.ZombieFactory()
@@ -11,12 +12,14 @@ game.engine.initialize = function () {
 
 game.engine.mainLoop = function () {
     for (var i = 0; i < this.zombies.length; i++) {
-        this.zombies[i].move();
+        this.zombies[i].move(this.moveSlower);
         if (this.zombies[i].right > 850) {
             this.gameOver = true;
         }
     }
     if (this.gameOver) {
+        this.zombies = [];
+        this.fieldLines.html("");
         $(".game-over").fadeIn(1000);
     }
     else {
@@ -38,4 +41,9 @@ game.engine.killRandomZombie = function () {
         this.zombies.splice(index, 1);
         zombie.die();
     }
+}.bind(game.engine);
+
+game.engine.slowDownZombies = function () {
+    this.moveSlower = true;
+    setTimeout(function () { game.engine.moveSlower = false; }, 10000);
 }.bind(game.engine);
