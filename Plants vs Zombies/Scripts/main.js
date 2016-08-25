@@ -17,6 +17,7 @@ $(function () {
     $("#btn-slow-down").click(game.engine.slowDownZombies);
     $("#btn-grow-old").click(game.engine.growOld);
     $("#btn-explode").click(game.engine.explode);
+    $("#btn-shooter").click(game.engine.addShooter);
 
     game.engine.mainLoop();
 });

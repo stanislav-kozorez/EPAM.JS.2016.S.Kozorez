@@ -104,3 +104,57 @@ body{
     background-image: url(../Images/michael-die.gif);
     background-size: cover;
 }
+
+.shooter{
+    display: inline-block;
+    margin-top: 5px;
+    width: 75px;
+    background-size: cover;
+    position: relative;
+}
+
+.shooter.ololo{
+    background-image: url(../Images/ololo-shooter.png);
+    height: 70px;
+}
+
+.shooter.pea{
+    background-image: url(../Images/pea-shooter.gif);
+    height: 68px;
+}
+
+.bullet{
+    position: absolute;
+    background-size:cover;
+}
+
+.bullet-ololo{
+    background-image: url(../Images/ololo-bullet.png);
+    width: 59px;
+    height: 15px;
+    left: 42px;
+    top: 19px;
+}
+
+.bullet-pea{
+    background-image: url(../Images/pea-bullet.png);
+    width: 20px;
+    height: 19px;
+    left: 64px;
+    top: 13px;
+}
+
+.bullet-ololo-explode{
+    background-image: url(../Images/ololo-explode.gif);
+    width: 50px;
+    height: 50px;
+    top: 3px;
+}
+
+.bullet-pea-explode{
+    background-image: url(../Images/pea-explode.gif);
+    width: 30px;
+    height: 30px;
+    top: 8px;
+}
+
